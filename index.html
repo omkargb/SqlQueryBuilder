@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+       <!-- font awesome  -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+
+     <!-- <script src="./jquery.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+    <title>Query maker</title>
+
+  </head>
+  <body class="bg-light">
+     
+
+
+	<div class="container">
+		<div class="row">
+		<h4 class="text-center maintitle">Query maker</h4>
+		
+		<hr>
+		<form name="form1" id="form1" action="" method='post'>
+		
+			<div class="card card-body shadow-sm  m-2"> 
+			
+				<div class="row align-items-center "> 
+					
+					<h6 class="text-dark">Table and KPI selection : </h6>
+				
+					<div class="col-12 col-md-6 col-lg-4 col-xl-4"> 
+						<small>DB Table name: 
+						<select name="tablename" id="tablename" class="form-select form-select-sm" required>
+						   <option value="" selected="selected"> - Select tablename - </option>
+						</select>
+						</small>
+					</div>
+					
+					<div class="col-12 col-md-6 col-lg-4 col-xl-4"> 
+						<small>Extraction level : <select name="extractionlevel" id="extractionlevel" class="form-select form-select-sm">
+						   <option value="" selected="selected"> - Please select 'Tablename' first - </option>
+						</select>
+						</small>
+					</div>
+					
+					<div class="col-12 col-md-6 col-lg-4 col-xl-4"> 
+						<small>KPI value : <select multiple name="kpiname" id="kpiname" class="form-select form-select-sm">
+						   <option value="" selected="selected" disabled> - Please select 'Extraction level' first - </option>
+						</select>
+						</small>
+					</div>
+					
+					<center><button id="add_kpi_toqry" class="btn btn-outline-dark btn-sm mt-2" type="button" >Add KPIs </button> </center>
+
+				</div>
+				
+			</div>
+			
+			<div class="card card-body shadow-sm  m-2 durationcard" > 
+				<div class="row align-items-center"> 
+					
+					<h6 class="text-dark">Duration selection : &nbsp;&nbsp;&nbsp; For <span>&#11208;</span>&nbsp;
+						
+						<div class="form-check form-check-inline text-success"  id="dateselect1">
+						  <input class="form-check-input" type="radio" checked name="selected_date_column_name" id="table_date_column1" value="">
+						  <label class="form-check-label" for="table_date_column1"  id="table_date_column1_id"></label>
+						</div>
+						<div class="form-check form-check-inline text-success" id="dateselect2">
+						  <input class="form-check-input" type="radio" name="selected_date_column_name" id="table_date_column2" value="">
+						  <label class="form-check-label" for="table_date_column2" id="table_date_column2_id"></label>
+						</div>
+
+					</h6>
+					
+					<div class="col-12 col-md-4">
+						<select id="durationinputselect" class="form-select form-select-sm mt-4">
+						  <option value="daterange">Date between</option>
+						  <option value="onedt">Single Date</option>
+						  <option value="monyr">Month of year</option>
+						  <option value="weekyr">Week of year</option>
+						  <option value="lastndays">Last n days</option>
+						  <option value="years">Calender Year</option>
+						</select>
+					</div>
+					
+					<div class="col-12 col-md-8">
+						<div id="daterange" class="manualinputduration m-1">
+							<div class='row'>
+								<div class="col-6"> <small>From : </small>
+								  <input type="date" class="form-control form-control-sm " id="fromdt" min="2010-01-01" max="" 
+								  onfocus="this.max=new Date().toISOString().split('T')[0]"  />
+								</div>
+								<div class="col-6"> <small>To : </small>
+								  <input type="date" class="form-control form-control-sm " id="enddt" min="2010-01-01" max=""
+								  onfocus="this.max=new Date().toISOString().split('T')[0]"  />
+								</div>
+							</div>
+						</div>
+						
+						<div id="onedt" class="manualinputduration m-1">
+							<div class='row'>
+								<div class="col-6"><small>Condition : </small>
+									<select id="datesingle_condition" class="form-select form-select-sm">
+									  <option value="NA"> - Please select condition - </option>
+									  <option value="=">Equal to</option>
+									  <option value="<">Less than</option>
+									  <option value=">">Greater than</option>
+									  <option value="<=">Less than equal to</option>
+									  <option value=">=">Greater than equal to</option>
+									</select>
+								</div>	
+								<div class="col-6"><small>Date : </small>
+									  <input type="date" class="form-control form-control-sm" id="datesingle" min='2010-01-01'
+										onfocus="this.max=new Date().toISOString().split('T')[0]"  >
+								</div>
+							</div>
+						</div>		
+						
+						<div id="monyr" class="manualinputduration m-1"> 
+							<div class='row'>
+								<div class="col-6"><small>Equals:</small>
+									  <input type="month" class="form-control form-control-sm " id="myr" min="2010-01" max=""
+										onfocus="this.max=new Date().toISOString().slice(0, 7)" >
+									  
+								</div>
+								<div class="col-6"> <small id="alertmsg"></small> </div>
+							</div>
+						</div>
+					
+						<div id="weekyr" class="manualinputduration m-1">
+							<div class='row'>
+							<small id="wkyear_temp" class="text-dark text-center" hidden></small>
+								<div class="col-6"><small>Equals :</small>
+									  <input type="week" class="form-control form-control-sm " id="wkyr" min="2010-W01" max=""
+										onfocus="this.max=document.getElementById('wkyear_temp').innerHTML"  >
+								</div>
+							</div>
+						</div>
+						
+						<div id="years" class="manualinputduration m-1">
+							<div class='row'>
+								<div class="col-6"> <small>Equals : </small>
+									  <input type="number" class="form-control form-control-sm " id="yr" min="2010" max=""
+										onfocus="this.max=new Date().toISOString().slice(0, 4)" >
+								</div>
+							</div>
+						</div>
+						
+						<div id="lastndays" class="manualinputduration m-1">
+							<div class='row'>
+								<div class="col-6"> <small>Equals : </small>
+									  <input type="number" class="form-control form-control-sm " id="lastnday" min="1" max="1000">
+								</div>
+							</div>
+						</div>
+						
+					</div>
+				
+  					<center><button class="btn btn-outline-dark btn-sm mt-2" type="button" id="add_duration_toqry" >Add Duration </button> </center>
+
+				</div>
+			</div>				
+				
+			<div class="card card-body shadow-sm  m-2"> 
+				<h6 class="text-dark">Inclusion and Exclusions: </h6>
+				<div id='conditionrow'>	
+					<div class="row align-items-center"> 						
+						<div class="col-12 col-md-6 col-lg-4 col-xl-3"> 
+						<small> DB Table name: 
+						   <input class="form-control form-control-sm " value="" id="condition_tablename" readonly/>
+						</small>
+						</div>
+
+						<div class="col-12 col-md-6 col-lg-4 col-xl-3">  
+						<small> Column name : 
+						<select  name="condition_colnames" id="condition_colnames" class="form-select form-select-sm">
+						   <option value="" selected="selected" disabled> Please select 'Table name' first</option>
+						</select></small>
+						</div>
+						
+						<div class="col-12 col-md-6 col-lg-4 col-xl-3"> 
+						<small> Condition : 
+							<select id="condition_filters" class="form-select form-select-sm m-1">
+							  <option value="" readonly>Please select</option>
+							  <option value="=">Equals</option>
+							  <option value=">">Greater than</option>
+							  <option value="<">Less than</option>
+							  <option value=">=">Greater than equal to</option>
+							  <option value="<=">Less than equal to </option>
+							  <option value="Between">Between</option>
+							  <option value="like">Like</option>
+							  <option value="Not like">Not like</option>							  
+							  <option value="IN">In</option>
+							  <option value="Not IN">Not In</option>
+							</select>
+						</small>
+						</div>
+
+						<div class="col-12 col-md-6 col-lg-4 col-xl-3"> 
+						<small> Values : <small class="text-secondary"> Manual input only</small>
+							<input type="number" aria-label="First name" class="form-control m-1" id="condition_value1">
+							<span id="rangevalue">and 
+								<input type="number" aria-label="Last name" class="form-control m-1" id="condition_value2">
+							</span>
+						</small>
+						</div>
+					
+					</div>
+				</div>
+					<center><button class="btn btn-outline-dark btn-sm mt-2" type="button" onclick="onForm_conditionAdd()">Add condition </button> </center>
+			</div>
+
+
+			
+			<hr>
+			
+			<div class="card card-body shadow-sm  m-2"> 
+				<div class="row align-items-center"> 					
+					<h6 class="text-dark">Query generated :</h6>
+					<div class="col-12">
+						<small> Raw</small>
+							<div id="queryarea_raw" class="bg-light p-1 border">
+								<table class="">
+								  <tbody class="text-left">
+									<tr>
+									  <td>Select </td>
+									  <td id="kpigrpmain_inqry"></td>
+									  <td colspan='2' id="kpigrpcol_inqry"></td>
+									</tr>
+									<tr>
+									  <td>from </td>
+									  <td colspan='3' id="qryfromtable"></td>
+									</tr>
+									<tr>
+									  <td>where </td>
+									  <td colspan='3' id="dateduration_inqry" >1 </td>
+									</tr>
+									<!-- inclusion and exclusion conditions rows to be added here  -->
+									<tr id='groupbycheck'>
+									  <td >group by </td>
+									  <td colspan='3' id="groupingcols_inqry" ></td>
+									</tr>
+								  </tbody>
+								</table>
+							</div>
+							
+						<center>
+						<button class="btn btn-outline-primary btn-sm mt-2" type="button" id="Generate_revised_query">Generate cleaned query</button> </center>
+						<small> Revised </small> 
+						<textarea class="form-control form-control-sm mb-1" id="queryarea_revised" style="height:200px" readonly> 
+						</textarea>
+						<center><button class="btn btn-outline-success btn-sm mt-2" id="copyqry_btn" type="button" >Copy Query </button> </center>
+					</div>
+				</div>
+			</div>
+			
+			<br>
+		</form>
+		</div>
+	</div>
+
+
+    <script src="script_new.js"></script>
+
+   
+  </body>
+</html>
