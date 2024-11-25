@@ -173,28 +173,28 @@ var tablenameObject =
 			["issuedmobile" , "issueddate" , "issuedstorecode" , "couponoffercode" , "couponcode" , "issuedmobile" , "useddate" , "redeemedstorecode" , "redeemedmobile" , "amount" , "discount" , "narration"
 			],
 	   "issuedmobile": 
-			["count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "Count(distinct couponoffercode) distinct_couponoffercodes" , "Count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			["count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "Count(distinct couponoffercode) distinct_couponoffercodes" , "Count(distinct couponcode) distinct_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
 			],
 	   "redeemedmobile": 
-			["count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "Count(distinct couponoffercode) distinct_couponoffercodes" , "Count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			["count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "Count(distinct couponoffercode) distinct_couponoffercodes" , "Count(distinct couponcode) distinct_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
 			],
 	   "issueddate": 
-			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distinct_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
 			],
 	   "useddate": 
-			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distinct_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
 			],
 	   "couponoffercode": 
-			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distinct_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
 			],
 	   "narration": 
-			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distinct_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
 			],
 	   "issuedstorecode": 
-			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distinct_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
 			],
 	   "redeemedstorecode": 
-			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distinct_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
 			]
 	 } 
 }
@@ -236,7 +236,8 @@ window.onload = function()
 		
 		document.getElementById("table_date_column1").checked= true;
 		document.getElementById("kpigrpcol_inqry").innerHTML="";
-	
+			document.getElementById("groupalert").innerHTML="" ;
+			
 	   //display correct values in main drop down
 	   for (var y in tablenameObject[this.value]) 
 	   {
@@ -383,6 +384,7 @@ window.onload = function()
 			document.getElementById("groupbycheck").style.display= "none";	
 			grouping_main.innerHTML="";
 			groupingcols_alias.innerHTML="";
+			document.getElementById("groupalert").innerHTML="" ;			
 		}
 		
 		// kpi name dropdown value and text name setting 
@@ -392,7 +394,8 @@ window.onload = function()
 			document.getElementById("groupbycheck").style.display= "none";	
 			document.getElementById("kpigrpmain_inqry").innerHTML="" ;
 			document.getElementById("kpigrpcol_inqry").innerHTML="" ;
-			
+			 document.getElementById("groupalert").innerHTML="" ;
+			 
 			for (var i = 0; i < z.length; i++) 
 				{		
 					kpinameSel.options[kpinameSel.options.length] =new Option(z[i], z[i]);
@@ -407,6 +410,7 @@ window.onload = function()
 			document.getElementById("groupbycheck").style.display= "none";
 			document.getElementById("kpigrpmain_inqry").innerHTML="" ;
 			document.getElementById("kpigrpcol_inqry").innerHTML="" ;
+			 document.getElementById("groupalert").innerHTML="" ;
 			
 			for (var j = 0; j < z.length; j++) 
 				{		
@@ -422,6 +426,7 @@ window.onload = function()
 			 document.getElementById("groupbycheck").style.display= "block";	
 			 document.getElementById("kpigrpmain_inqry").innerHTML="" ;
 			 document.getElementById("kpigrpcol_inqry").innerHTML="" ;
+			 document.getElementById("groupalert").innerHTML="Data will be grouped on this column." ;
 				
 			for (var k = 0; k < z.length; k++) 
 				{
