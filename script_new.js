@@ -492,38 +492,52 @@ window.onload = function()
 				{
 					var v5 = document.getElementById("datesingle_condition").value;
 					var v6 = document.getElementById("datesingle").value;
-					con = (radio_datecol_value + v5 + "'" + v6 + "'");
+					if(v6!="") {con = (radio_datecol_value + v5 + "'" + v6 + "'"); }
+					else {alert("Please check your inputs"); con=""; }
 					console.log("onedt : " + con);
 				}
 			else if(durationinputselect_var=="monyr")
 				{
 					var v7= document.getElementById("myr").value;	
-					if(radio_datecol_value=="DATE(dateofbirth)")
+					if(v7!="")
+					{	if(radio_datecol_value=="DATE(dateofbirth)")
 						{ 	con = ( "month("  + radio_datecol_value + ") = " + v7.substring(5, 7) );  
 							document.getElementById("alertmsg").innerHTML="for Birthdate - only month is taken" ; 
 						}
-					else 
+						else 
 						{ 	con = ( " concat(year(" + radio_datecol_value + "),'-',month("  + radio_datecol_value + "))='" + v7 + "'");
 							document.getElementById("alertmsg").innerHTML="";
-						}						
+						}
+					}	
+					else {alert("Please check your inputs"); con=""; }
+					
 					console.log("monyr : " + con);					
 				}	
 			else if(durationinputselect_var=="weekyr")
 				{
 					var v8= document.getElementById("wkyr").value;	
-					con = ( " concat(year(" + radio_datecol_value + "),'-W',week("  + radio_datecol_value + "))='" + v8 + "'");
+					if(v8!="")
+					{	con = ( " concat(year(" + radio_datecol_value + "),'-W',week("  + radio_datecol_value + "))='" + v8 + "'");	}
+					else { alert("Please check your inputs");	con=""; }
+										
 					console.log(con);			
 				}	
 			else if(durationinputselect_var=="years")
 				{
 					var v9= document.getElementById("yr").value;	
-					con = ( " year(" + radio_datecol_value + ") = " + v9);
+					if(v9!="")
+					{	con = ( " year(" + radio_datecol_value + ") = " + v9);	}
+					else { alert("Please check your inputs"); con=""; }
+					
 					console.log(con);
 				}	
 			else if(durationinputselect_var=="lastndays")
 				{
 					var v10= document.getElementById("lastnday").value;			// colname>=DATE(DATE_SUB(CURDATE(),INTERVAL 30 DAY ))						
-					con = ( radio_datecol_value + " >=DATE(DATE_SUB(CURDATE(),INTERVAL " + v10 + " day))");	
+					if(v10!="")
+					{	con = ( radio_datecol_value + " >=DATE(DATE_SUB(CURDATE(),INTERVAL " + v10 + " day))");	}
+					else { alert("Please check your inputs"); con=""; }
+						
 					console.log(con);					
 				}					
 			else
@@ -549,21 +563,25 @@ window.onload = function()
 					document.getElementById("rangevalue").style.display= "block";
 					document.getElementById("condition_value1").type = "number";
 					document.getElementById("condition_value2").type = "number";
+					document.getElementById("innotin_alert").innerHTML= "";
 				} 
 				else if(optionValue1==">" || optionValue1=="<" || optionValue1==">=" || optionValue1=="<=")
 				{
 					document.getElementById("rangevalue").style.display= "None";
 					document.getElementById("condition_value1").type = "number";
+					document.getElementById("innotin_alert").innerHTML= "";					
 				} 
 				else if(optionValue1=="=" || optionValue1=="like" ||  optionValue1=="Not like" ||  optionValue1=="IN" ||  optionValue1=="Not IN")
 				{
 					document.getElementById("rangevalue").style.display= "None";
 					document.getElementById("condition_value1").type = "text";
+					document.getElementById("innotin_alert").innerHTML= "Please provide value only for 'Like','Not like' conditions. Please provide comma separated values only for 'In','Not In' conditions.";
 				}	
 				else
 				{
 					document.getElementById("rangevalue").style.display= "None";
 					document.getElementById("condition_value1").type = "number";
+					document.getElementById("innotin_alert").innerHTML= "";
 				}
 			});
 		}).change();
@@ -657,7 +675,7 @@ window.onload = function()
 		}
 		else if(data.condition_filters=="IN" || data.condition_filters=="Not IN") 
 		{
-			cell3 = newRow.insertCell(2);   cell3.innerHTML = "('" + data.condition_value1 + "')";
+			cell3 = newRow.insertCell(2);   cell3.innerHTML = "('" + data.condition_value1.replaceAll(",","','").trim() + "')";
 		}
 	   else
 		{

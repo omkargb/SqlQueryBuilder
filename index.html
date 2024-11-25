@@ -48,7 +48,7 @@
 					</div>
 					
 					<div class="col-12 col-md-6 col-lg-4 col-xl-4"> 
-						<small>Extraction level : <small id="groupalert" class="text-danger"></small>
+						<small>Extraction level : <small id="groupalert" class="text-secondary"></small>
 						<select name="extractionlevel" id="extractionlevel" class="form-select form-select-sm">
 						   <option value="" selected="selected"> - Please select 'Tablename' first - </option>
 						</select>
@@ -57,7 +57,7 @@
 					</div>
 					
 					<div class="col-12 col-md-6 col-lg-4 col-xl-4"> 
-						<small>KPI value : <small class="text-danger">You can select mutiple options using 'Ctrl' key.</small>
+						<small>KPI value : <small class="text-secondary">You can select mutiple options using 'Ctrl' key.</small>
 						<select multiple name="kpiname" id="kpiname" class="form-select form-select-sm">
 						   <option value="" selected="selected" disabled> - Please select 'Extraction level' first - </option>
 						</select>
@@ -212,8 +212,9 @@
 						</div>
 
 						<div class="col-12 col-md-6 col-lg-4 col-xl-3"> 
-						<small> Values : <small class="text-secondary"> Manual input only</small>
+						<small> Values : 
 							<input type="number" aria-label="First name" class="form-control m-1" id="condition_value1">
+							<small class="text-secondary" id="innotin_alert"> Manual input</small>
 							<span id="rangevalue">and 
 								<input type="number" aria-label="Last name" class="form-control m-1" id="condition_value2">
 							</span>
