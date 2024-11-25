@@ -27,7 +27,9 @@
 	<div class="container">
 		<div class="row">
 		<h4 class="text-center maintitle">Query maker</h4>
-		
+		<div><small> Note : <br> 1. This application is useful for those who know the structure and kpis needed to extract from the database being used.<br>
+		2. Table joins are not available yet.
+		</small></div>
 		<hr>
 		<form name="form1" id="form1" action="" method='post'>
 		
@@ -53,7 +55,8 @@
 					</div>
 					
 					<div class="col-12 col-md-6 col-lg-4 col-xl-4"> 
-						<small>KPI value : <select multiple name="kpiname" id="kpiname" class="form-select form-select-sm">
+						<small>KPI value : <small class="text-danger">You can select mutiple options using 'Ctrl' key.</small>
+						<select multiple name="kpiname" id="kpiname" class="form-select form-select-sm">
 						   <option value="" selected="selected" disabled> - Please select 'Extraction level' first - </option>
 						</select>
 						</small>
@@ -83,6 +86,7 @@
 					
 					<div class="col-12 col-md-4">
 						<select id="durationinputselect" class="form-select form-select-sm mt-4">
+						  <option value="">- Please select -</option>
 						  <option value="daterange">Date between</option>
 						  <option value="onedt">Single Date</option>
 						  <option value="monyr">Month of year</option>
@@ -127,7 +131,7 @@
 						
 						<div id="monyr" class="manualinputduration m-1"> 
 							<div class='row'>
-								<div class="col-6"><small>Equals:</small>
+								<div class="col-6"><small>Equals :</small>
 									  <input type="month" class="form-control form-control-sm " id="myr" min="2010-01" max=""
 										onfocus="this.max=new Date().toISOString().slice(0, 7)" >
 									  

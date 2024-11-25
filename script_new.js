@@ -164,8 +164,39 @@ var tablenameObject =
 	   "Storetype": 
 			["count(distinct storecode) storecode_count"
 			]
+	 } ,
+							
+	 
+  "Coupon_offer_report": 
+	 {
+	   "Specific_columns": 
+			["issuedmobile" , "issueddate" , "issuedstorecode" , "couponoffercode" , "couponcode" , "issuedmobile" , "useddate" , "redeemedstorecode" , "redeemedmobile" , "amount" , "discount" , "narration"
+			],
+	   "issuedmobile": 
+			["count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "Count(distinct couponoffercode) distinct_couponoffercodes" , "Count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			],
+	   "redeemedmobile": 
+			["count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "Count(distinct couponoffercode) distinct_couponoffercodes" , "Count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			],
+	   "issueddate": 
+			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			],
+	   "useddate": 
+			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			],
+	   "couponoffercode": 
+			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			],
+	   "narration": 
+			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			],
+	   "issuedstorecode": 
+			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			],
+	   "redeemedstorecode": 
+			["count(Distinct issuedmobile) issuedmobiles" , "count(Distinct redeemedmobile) redeemedmobiles" , "count(couponoffercode) couponoffercodes" , "count(couponcode) couponcodes" , "count(distinct couponoffercode) distinct_couponoffercodes" , "count(distinct couponcode) distint_couponcodes" , "sum(amount) amounts" , "sum(discount) discounts"
+			]
 	 } 
- 
 }
 
 
@@ -264,6 +295,14 @@ window.onload = function()
 					document.getElementById("table_date_column1").value="txndate";
 					document.getElementById("dateselect2").style.display= "None";
 				}
+				
+				else if(optionValue=="Coupon_offer_report") 
+				{	document.getElementById("table_date_column1_id").innerHTML="Issueddate"; 
+					document.getElementById("table_date_column1").value="Issueddate"; 
+					document.getElementById("table_date_column2_id").innerHTML="Useddate"; 
+					document.getElementById("table_date_column2").value="Useddate"; 
+					document.getElementById("dateselect2").style.display= "";
+				}
 			}
 			
 			console.log(optionValue);
@@ -295,7 +334,10 @@ window.onload = function()
 				],
 			 store_master: 
 				["storecode", "lpaasstore", "state", "city", "tier", "region", "storetype"
-				]  
+				] ,
+			Coupon_offer_report:
+				["issuedmobile" ,  "issuedstorecode" , "couponoffercode" , "couponcode" , "issuedmobile" , "redeemedstorecode" , "redeemedmobile" , "amount" , "discount" , "narration"
+				]				
 		};
 
 		console.log("filter_tablename : "+filter_tablename);
