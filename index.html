@@ -6,18 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
        <!-- font awesome  -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
 
-
      <!-- <script src="./jquery.min.js"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-
-    <title>Query maker</title>
+    <title>SQL Query maker</title>
 
   </head>
   <body class="bg-light">
@@ -26,7 +24,7 @@
 
 	<div class="container">
 		<div class="row">
-		<h4 class="text-center maintitle">Query maker</h4>
+		<h4 class="text-center maintitle">SQL Query maker</h4>
 		<div><small> Note : <br> 1. This application is useful for those who know the structure and kpis needed to extract from the database being used.<br>
 		2. Table joins are not available yet.
 		</small></div>
@@ -35,32 +33,53 @@
 		
 			<div class="card card-body shadow-sm  m-2"> 
 			
-				<div class="row align-items-center "> 
+				<div class="row align-items-start "> 
 					
-					<h6 class="text-dark">Table and KPI selection : </h6>
+					<h6 class=""><i class="fa fa-tasks"></i> &nbsp; Table and KPI selection : </h6>
 				
 					<div class="col-12 col-md-6 col-lg-4 col-xl-4"> 
-						<small>DB Table name: 
+						<small>DB Table name : 
 						<select name="tablename" id="tablename" class="form-select form-select-sm" required>
 						   <option value="" selected="selected"> - Select tablename - </option>
 						</select>
+						
+						<hr><span>Grouping on columns? : &nbsp;</span>
+							<div class="form-check form-check-inline"  id="extlevel1">
+								<input class="form-check-input" type="radio" checked name="selected_extr" id="selected_extr1" value="NonGrouping"> No
+							</div>
+							<div class="form-check form-check-inline" id="extlevel2">
+								<input class="form-check-input" type="radio" name="selected_extr" id="selected_extr2" value="Grouping">Yes
+							</div>	
+							
 						</small>
 					</div>
 					
 					<div class="col-12 col-md-6 col-lg-4 col-xl-4"> 
-						<small>Extraction level : <small id="groupalert" class="text-secondary"></small>
-						<select name="extractionlevel" id="extractionlevel" class="form-select form-select-sm">
+						<small>Extraction level : 
+						
+					
+						 <!-- <small id="groupalert" class="text-secondary"></small> -->
+
+						<select name="extractionlevel_ng" id="extractionlevel_ng" class="form-select form-select-sm">
 						   <option value="" selected="selected"> - Please select 'Tablename' first - </option>
 						</select>
+						
+						<div id="extractionlevel_g_div">
+						<select name="extractionlevel" id="extractionlevel_g" class="form-select form-select-sm" multiple>
+						   <option value="" selected="selected"> - Please select 'Tablename' first - </option>
+						</select>
+						<i class="fa fa-info-circle text-info"></i> <small class="text-secondary"> You can select mutiple options using 'Ctrl' key.</small>
+						</div>
 						
 						</small>
 					</div>
 					
 					<div class="col-12 col-md-6 col-lg-4 col-xl-4"> 
-						<small>KPI value : <small class="text-secondary">You can select mutiple options using 'Ctrl' key.</small>
+						<small>KPI value : 
 						<select multiple name="kpiname" id="kpiname" class="form-select form-select-sm">
 						   <option value="" selected="selected" disabled> - Please select 'Extraction level' first - </option>
 						</select>
+						<i class="fa fa-info-circle text-info"></i> <small class="text-secondary"> You can select mutiple options using 'Ctrl' key.</small>
 						</small>
 					</div>
 					
@@ -73,7 +92,8 @@
 			<div class="card card-body shadow-sm  m-2 durationcard" > 
 				<div class="row align-items-center"> 
 					
-					<h6 class="text-dark">Duration selection : &nbsp;&nbsp;&nbsp; For <span>&#11208;</span>&nbsp;
+					<h6 class=""><i class="fa fa-calendar"></i>  &nbsp; Duration selection : &nbsp;&nbsp;&nbsp; 
+					<span> For  &nbsp;<i class="fa fa-caret-right"></i>  &nbsp;</span>
 						
 						<div class="form-check form-check-inline text-success"  id="dateselect1">
 						  <input class="form-check-input" type="radio" checked name="selected_date_column_name" id="table_date_column1" value="">
@@ -116,7 +136,7 @@
 							<div class='row'>
 								<div class="col-6"><small>Condition : </small>
 									<select id="datesingle_condition" class="form-select form-select-sm">
-									  <option value="NA"> - Please select condition - </option>
+									  <option value=""> - Please select condition - </option>
 									  <option value="=">Equal to</option>
 									  <option value="<">Less than</option>
 									  <option value=">">Greater than</option>
@@ -144,7 +164,7 @@
 					
 						<div id="weekyr" class="manualinputduration m-1">
 							<div class='row'>
-							<small id="wkyear_temp" class="text-dark text-center" hidden></small>
+							<small id="wkyear_temp" class=" text-center" hidden></small>
 								<div class="col-6"><small>Equals :</small>
 									  <input type="week" class="form-control form-control-sm " id="wkyr" min="2010-W01" max=""
 										onfocus="this.max=document.getElementById('wkyear_temp').innerHTML"  >
@@ -177,7 +197,7 @@
 			</div>				
 				
 			<div class="card card-body shadow-sm  m-2"> 
-				<h6 class="text-dark">Inclusion and Exclusions: </h6>
+				<h6 class=""><i class="fa fa-filter"></i>  &nbsp; Inclusion and Exclusions : </h6>
 				<div id='conditionrow'>	
 					<div class="row align-items-center"> 						
 						<div class="col-12 col-md-6 col-lg-4 col-xl-3"> 
@@ -187,16 +207,25 @@
 						</div>
 
 						<div class="col-12 col-md-6 col-lg-4 col-xl-3">  
+						<small> Condition type: 
+						<select  name="condition_type" id="condition_type" class="form-select form-select-sm">
+						   <option value="" selected="selected" disabled>- Please select - </option>
+						   <option value="AND">AND</option>
+						   <option value="OR">OR</option>
+						</select></small>
+						</div>
+						
+						<div class="col-12 col-md-6 col-lg-4 col-xl-3">  
 						<small> Column name : 
 						<select  name="condition_colnames" id="condition_colnames" class="form-select form-select-sm">
-						   <option value="" selected="selected" disabled> Please select 'Table name' first</option>
+						   <option value="" selected="selected" disabled>- Please select 'Table name' first -</option>
 						</select></small>
 						</div>
 						
 						<div class="col-12 col-md-6 col-lg-4 col-xl-3"> 
 						<small> Condition : 
 							<select id="condition_filters" class="form-select form-select-sm m-1">
-							  <option value="" readonly>Please select</option>
+							  <option value="" readonly> - Please select - </option>
 							  <option value="=">Equals</option>
 							  <option value=">">Greater than</option>
 							  <option value="<">Less than</option>
@@ -211,13 +240,21 @@
 						</small>
 						</div>
 
-						<div class="col-12 col-md-6 col-lg-4 col-xl-3"> 
-						<small> Values : 
-							<input type="number" aria-label="First name" class="form-control m-1" id="condition_value1">
-							<small class="text-secondary" id="innotin_alert"> Manual input</small>
-							<span id="rangevalue">and 
-								<input type="number" aria-label="Last name" class="form-control m-1" id="condition_value2">
-							</span>
+						<div class="col-12 col-md-6 col-lg-4 col-xl-6"> 
+						<small> Value : 
+							<div class="row ">
+								<div class="col-5">
+									<input type="number"  class="form-control form-control-sm m-1" id="condition_value1">
+								</div>
+								
+								<div class="col-7">
+									<small class="text-secondary" id="innotin_alert"></small>
+									<span id="rangevalue">
+										<small class="">and &nbsp;&nbsp;</small> 
+										<small><input type="number" class="form-control form-control-sm m-1" id="condition_value2"></small> 
+									</span>
+								</div>	
+							</div>	
 						</small>
 						</div>
 					
@@ -226,45 +263,123 @@
 					<center><button class="btn btn-outline-dark btn-sm mt-2" type="button" onclick="onForm_conditionAdd()">Add condition </button> </center>
 			</div>
 
+			<div class="card card-body shadow-sm  m-2"> 
+				<p class=""> <i class="fa fa-filter"></i>  &nbsp; Other :</p>
+				<div id='otherrow'>	
+					<div class="row justify-items-center"> 
+					
+						<div class="col-12 col-lg-6" id="orderby_div"> 
+							<div class="row  bg-light m-1 p-2">
+							<h6> Order by : </h6> 
+								<div class="col-12 col-md-6">
+									<small>Column name - </small> 
+									<select id="orderby_colnames" class="form-select form-select-sm">
+									  <option value="" readonly selected> - Please select - </option>
+									</select>
+								</div>	
+								
+								<div class="col-6 col-md-6">
+									<small>Order - </small> <br>
+										<div class="form-check form-check-inline"  id="ord_asc">
+										  <input class="form-check-input" type="radio" checked name="selected_order" id="selected_order1" value="Asc">Asc <i class="fa fa-sort-amount-asc"></i>
+										</div>
+										<div class="form-check form-check-inline" id="ord_desc">
+										  <input class="form-check-input" type="radio" name="selected_order" id="selected_order2" value="Desc">Desc <i class="fa fa-sort-amount-desc"></i>
+										</div>
+								</div>									
+								
+								<div class="col-12">
+									<center>
+										<button class="btn btn-outline-dark btn-sm m-2" type="button" id="add_order_btn">Add </button>
+										<button class="btn btn-outline-dark btn-sm m-2" type="button" id="remove_order_btn">Clear </button> 
+									<center>
+								</div>					
+							</div>					
+						</div>					
+						
+						<div class="col-12 col-lg-6" id="having_div"> 
+							<div class="row bg-light m-1 p-2">
+								<h6> Having : </h6> 
+									<div class="col-12 col-md-6">
+										<small>Column name - </small> 
+										<select id="having_colnames" class="form-select form-select-sm">
+										  <option value="" readonly selected> - Please select - </option>
+										</select>
+									</div>
+								   <div class="col-12 col-md-6">
+									   <small>Condition - 	</small>						
+										<select id="having_condition_select" class="form-select form-select-sm">
+										  <option value="" readonly selected> - Please select - </option>
+										  <option value="=">Equals</option>
+										  <option value=">">Greater than</option>
+										  <option value="<">Less than</option>
+										  <option value=">=">Greater than equal to</option>
+										  <option value="<=">Less than equal to </option>
+										</select>
+									</div>
+									<div class="col-12 col-md-6">
+										<small>Value -</small> <input  type="number"  class="form-control form-control-sm " value="" id="havinginput" />
+								   </div>
+									<div class="col-12 col-md-6 align-self-end">
+										<center>
+										<button class="btn btn-outline-dark btn-sm m-2" type="button" id="add_having_btn">Add </button> 
+										<button class="btn btn-outline-dark btn-sm m-2" type="button" id="remove_having_btn"> Clear </button> 
+										</center>
 
+									</div>	
+							</div>
+						</div>
+						
+					</div>
+				</div>
+			</div>
 			
 			<hr>
 			
 			<div class="card card-body shadow-sm  m-2"> 
 				<div class="row align-items-center"> 					
-					<h6 class="text-dark">Query generated :</h6>
+					<h6 class=""><i class="fa fa-list-ul"></i>   &nbsp; Query generated :</h6>
 					<div class="col-12">
-						<small> Raw</small>
-							<div id="queryarea_raw" class="bg-light p-1 border">
-								<table class="">
+						<small> Raw - </small>
+							<div id="queryarea_raw" class="bg-light p-1 border small">
+								<table class=" table-sm" id="raw_querytable">
 								  <tbody class="text-left">
 									<tr>
 									  <td>Select </td>
 									  <td id="kpigrpmain_inqry"></td>
-									  <td colspan='2' id="kpigrpcol_inqry"></td>
+									  <td colspan='3' id="kpigrpcol_inqry"></td>
 									</tr>
 									<tr>
 									  <td>from </td>
-									  <td colspan='3' id="qryfromtable"></td>
+									  <td colspan='4' id="qryfromtable_td"></td>
 									</tr>
 									<tr>
 									  <td>where </td>
-									  <td colspan='3' id="dateduration_inqry" >1 </td>
+									  <td colspan='4' id="dateduration_td" >1 </td>
 									</tr>
 									<!-- inclusion and exclusion conditions rows to be added here  -->
-									<tr id='groupbycheck'>
+									<tr id='groupbycheck_tr'>
 									  <td >group by </td>
-									  <td colspan='3' id="groupingcols_inqry" ></td>
+									  <td colspan='4' id="groupingcols_inqry" ></td>
 									</tr>
+									<tr id='having_tr' style="display:none">
+									  <td >having </td>
+									  <td colspan='4' id="having_inqry" ></td>
+									</tr>										
+									<tr id='orderby_tr' style="display:none">
+									  <td >order by </td>
+									  <td colspan='4' id="order_inqry" ></td>
+									</tr>									
 								  </tbody>
 								</table>
 							</div>
 							
 						<center>
-						<button class="btn btn-outline-primary btn-sm mt-2" type="button" id="Generate_revised_query">Generate cleaned query</button> </center>
-						<small> Revised </small> 
-						<textarea class="form-control form-control-sm mb-1" id="queryarea_revised" style="height:200px" readonly> 
-						</textarea>
+						<button class="btn btn-outline-primary btn-sm mt-2" type="button" id="Generate_revised_query"> Generate cleaned query </button> </center>
+						
+						<small> Revised - </small> 
+						<textarea class="form-control form-control-sm mb-1" id="queryarea_revised" style="height:200px" readonly> </textarea>
+						
 						<center><button class="btn btn-outline-success btn-sm mt-2" id="copyqry_btn" type="button" >Copy Query </button> </center>
 					</div>
 				</div>
@@ -272,12 +387,16 @@
 			
 			<br>
 		</form>
+
 		</div>
 	</div>
 
 
+
+
     <script src="script_new.js"></script>
 
-   
+
+
   </body>
 </html>
